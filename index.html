@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenAPI Viewer for Confluence & Jira</title>
+<meta name="description" content="Searchable OpenAPI docs and breaking-change reports inside Confluence and Jira. Runs on Atlassian.">
+<link rel="icon" href="logo.svg">
+<style>
+  :root { --text: #172b4d; --subtle: #44546f; --bg: #fff; --raised: #f7f8f9; --border: #dcdfe4; --blue: #1d7afc; }
+  @media (prefers-color-scheme: dark) { :root { --text: #dee4ea; --subtle: #9fadbc; --bg: #1d2125; --raised: #22272b; --border: #38414a; --blue: #579dff; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: var(--text); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  header { display: flex; gap: 16px; align-items: center; }
+  header img { width: 56px; height: 56px; }
+  h1 { font-size: 28px; margin: 0; line-height: 1.2; }
+  h2 { font-size: 20px; margin: 40px 0 8px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .tag { color: var(--subtle); margin: 4px 0 0; }
+  code, pre { font-family: ui-monospace, Menlo, monospace; font-size: 14px; background: var(--raised); border-radius: 4px; }
+  code { padding: 1px 4px; }
+  pre { padding: 12px; overflow-x: auto; }
+  ul, ol { padding-left: 22px; }
+  a { color: var(--blue); }
+  .usp { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 24px; }
+  .usp div { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: var(--raised); }
+  .usp b { display: block; margin-bottom: 4px; }
+  nav a { margin-right: 16px; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <img src="logo.svg" alt="">
+  <div>
+    <h1>OpenAPI Viewer for Confluence &amp; Jira</h1>
+    <p class="tag">See what changed in your API, right where you review it.</p>
+  </div>
+</header>
+<nav><a href="#start">Get started</a><a href="#compare">Change report</a><a href="#faq">FAQ</a><a href="#privacy">Privacy</a><a href="#support">Support</a></nav>
+
+<div class="usp">
+  <div><b>Breaking changes, flagged</b>Compare with any earlier version of the spec. Removed endpoints, new required fields, type changes and more, in red.</div>
+  <div><b>Find any endpoint</b>Search by path, summary, operationId or tag. Copy any request as a cURL command.</div>
+  <div><b>Private by design</b>Runs on Atlassian. No external servers, URLs or API tokens. Your specs never leave Atlassian.</div>
+  <div><b>Modern specs</b>OpenAPI 3.1, 3.0 and Swagger 2.0, YAML or JSON, 5 MB+ specs, dark mode, clean PDF export.</div>
+</div>
+
+<h2 id="start">Get started</h2>
+<p><b>Confluence</b></p>
+<ol>
+  <li>Attach your <code>.yaml</code>, <code>.yml</code> or <code>.json</code> OpenAPI file to the page.</li>
+  <li>Type <code>/OpenAPI Viewer</code> in the editor, choose the attachment (or paste a spec up to 32 KB) and save.</li>
+  <li>Optional: choose how operations expand and whether to show the description, servers and schemas.</li>
+</ol>
+<p>Upload a new version of the same attachment and the macro shows the latest one automatically.</p>
+<p><b>Jira</b></p>
+<ol>
+  <li>Attach the spec file to an issue.</li>
+  <li>Open the <b>OpenAPI spec</b> panel from the issue's apps menu. With several spec files attached, pick one from the dropdown.</li>
+</ol>
+
+<h2 id="compare">Change report</h2>
+<p>Use <b>Compare with…</b> above the docs:</p>
+<ul>
+  <li>Confluence: compare with any earlier version of the attachment.</li>
+  <li>Jira: compare with another spec file on the same issue (for example <code>api-v1.yaml</code> and <code>api-v2.yaml</code>).</li>
+</ul>
+<p>The report groups changes as <b>Breaking</b> (removed endpoints or responses, new required parameters or fields, type changes,
+removed request enum values, new response enum values, security changes), <b>Added</b> (new endpoints) and <b>Changed</b> (everything else).
+<b>Copy report</b> copies it as text for a Jira comment or release notes.</p>
+
+<h2 id="faq">FAQ</h2>
+<p><b>Why no "Try it out"?</b> It would send requests from Confluence to your API servers, which means data leaving Atlassian and CORS errors.
+Use <b>cURL</b> on any operation instead: it copies a ready-to-run command with parameters, auth header and an example body.</p>
+<p><b>Can it load specs from a URL or GitHub?</b> No, by design: that would require external network access. Attach the file instead.</p>
+<p><b>External <code>$ref</code> to other files?</b> Not resolved; the viewer lists them. Bundle the spec into one file (for example with <code>redocly bundle</code>).</p>
+<p><b>PDF and Word export?</b> The macro exports as a table of endpoints with the API title and description.</p>
+<p><b>Who can see the spec?</b> Exactly the people who can see the page or issue and its attachments. The app uses each viewer's own permissions.</p>
+
+<h2 id="privacy">Privacy policy</h2>
+<p>Last updated: 4 October 2026.</p>
+<p>OpenAPI Viewer runs entirely on Atlassian Forge and qualifies as Runs on Atlassian. It has no external servers.
+It reads only the attachment or pasted text you choose, using your Atlassian permissions, to display it in your browser or to build the
+PDF/Word export. It stores nothing beyond the macro settings that Confluence saves in the page. It sends no data to the developer or to
+any third party, and uses no cookies, tracking or analytics. Atlassian's own privacy policy covers the Atlassian platform.</p>
+
+<h2 id="support">Support</h2>
+<p>Email <a href="mailto:rajuarshanapalli@zohomail.in">rajuarshanapalli@zohomail.in</a>. We reply within two business days.</p>
+</main>
+</body>
+</html>
