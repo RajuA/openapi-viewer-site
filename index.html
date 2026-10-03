@@ -74,7 +74,7 @@ removed request enum values, new response enum values, security changes), <b>Add
 <p><b>Why no "Try it out"?</b> It would send requests from Confluence to your API servers, which means data leaving Atlassian and CORS errors.
 Use <b>cURL</b> on any operation instead: it copies a ready-to-run command with parameters, auth header and an example body.</p>
 <p><b>Can it load specs from a URL or GitHub?</b> No, by design: that would require external network access. Attach the file instead.</p>
-<p><b>External <code>$ref</code> to other files?</b> Not resolved; the viewer lists them. Bundle the spec into one file (for example with <code>redocly bundle</code>).</p>
+<p><b>Split specs with <code>$ref</code> to other files?</b> Supported. Attach the referenced files next to the spec (same page or issue); they are matched by file name, so <code>./schemas/pet.yaml</code> finds <code>pet.yaml</code>. References to URLs are not fetched. Missing files are listed above the docs.</p>
 <p><b>PDF and Word export?</b> The macro exports as a table of endpoints with the API title and description.</p>
 <p><b>Who can see the spec?</b> Exactly the people who can see the page or issue and its attachments. The app uses each viewer's own permissions.</p>
 
